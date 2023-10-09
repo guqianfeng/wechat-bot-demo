@@ -31,11 +31,21 @@ function onLogin(user: Contact) {
 }
 
 async function onMessage(msg: Message) {
-    log.info('StarterBot', msg.toString())
+    // log.info('StarterBot', msg.toString())
 
-    console.log(msg);
+    const room = msg.room();
+    const talker = msg.talker();
+    const text = msg.text();
 
-    if (msg.text() === 'ding') {
+    // console.log(msg);
+
+    console.log({
+        roomTopic: room?.payload?.topic,
+        talkerName: talker.payload?.name,
+        text
+    });
+
+    if (text === 'ding') {
         await msg.say('dong')
     }
 
